@@ -1,19 +1,19 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthModule } from './modules/auth/auth.module';
+import { FunctionsModule } from './modules/functions/functions.module';
 import { GenresModule } from './modules/genres/genres.module';
 import { LanguagesModule } from './modules/languages/languages.module';
 import { MoviesModule } from './modules/movies/movies.module';
-import { FunctionsModule } from './modules/functions/functions.module';
 import { PaymentMethodsModule } from './modules/payment_methods/payment_methods.module';
-import { TicketsModule } from './modules/tickets/tickets.module';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { UsersModule } from './modules/users/users.module';
-import { AuthModule } from './modules/auth/auth.module';
 import { SecurityModule } from './modules/security/security.module';
+import { TicketsModule } from './modules/tickets/tickets.module';
+import { UsersModule } from './modules/users/users.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
