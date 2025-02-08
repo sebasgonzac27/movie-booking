@@ -40,6 +40,9 @@ importers:
       rxjs:
         specifier: ^7.8.1
         version: 7.8.1
+      slugify:
+        specifier: 1.6.6
+        version: 1.6.6
       typeorm:
         specifier: 0.3.20
         version: 0.3.20(mysql2@3.12.0)(ts-node@10.9.2(@swc/core@1.10.14)(@types/node@22.13.1)(typescript@5.7.3))
@@ -5469,6 +5472,10 @@ packages:
   slice-ansi@7.1.0:
     resolution: {integrity: sha512-bSiSngZ/jWeX93BqeIAbImyTbEihizcwNjFoRUIY/T1wWQsfsm2Vw1agPKylXvQTU7iASGdHhyqRlqQzfz+Htg==}
     engines: {node: '>=18'}
+
+  slugify@1.6.6:
+    resolution: {integrity: sha512-h+z7HKHYXj6wJU+AnS/+IH8Uh9fdcX1Lrhg1/VMdf9PwoBQXFcXiAdsy2tSK0P6gKwJLXp02r90ahUCqHk9rrw==}
+    engines: {node: '>=8.0.0'}
 
   smart-buffer@4.2.0:
     resolution: {integrity: sha512-94hK0Hh8rPqQl2xXc3HsaBoOXKV20MToPkcXvwbISWLEs+64sBq5kFgn2kJDHb1Pry9yrP0dxrCI9RRci7RXKg==}
@@ -12294,6 +12301,8 @@ snapshots:
     dependencies:
       ansi-styles: 6.2.1
       is-fullwidth-code-point: 5.0.0
+
+  slugify@1.6.6: {}
 
   smart-buffer@4.2.0: {}
 

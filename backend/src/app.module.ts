@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
-import { MoviesModule } from './movies/movies.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CategoriesModule } from './categories/categories.module';
+import { GenresModule } from './modules/genres/genres.module';
+import { LanguagesModule } from './modules/languages/languages.module';
+import { MoviesModule } from './modules/movies/movies.module';
 
 @Module({
   imports: [
-    MoviesModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
@@ -16,7 +16,9 @@ import { CategoriesModule } from './categories/categories.module';
       autoLoadEntities: true,
       synchronize: true,
     }),
-    CategoriesModule,
+    MoviesModule,
+    GenresModule,
+    LanguagesModule,
   ],
   controllers: [],
   providers: [],
