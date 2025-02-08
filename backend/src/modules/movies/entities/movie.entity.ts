@@ -1,3 +1,4 @@
+import { Function } from 'src/modules/functions/entities/function.entity';
 import { Genre } from 'src/modules/genres/entities/genre.entity';
 import { Language } from 'src/modules/languages/entities/language.entity';
 import { TimestampEntity } from 'src/shared/entities';
@@ -7,6 +8,7 @@ import {
   PrimaryGeneratedColumn,
   ManyToMany,
   JoinTable,
+  OneToMany,
 } from 'typeorm';
 
 @Entity()
@@ -23,7 +25,7 @@ export class Movie extends TimestampEntity {
   @Column()
   storyline: string;
 
-  @Column({ type: 'date' })
+  @Column({ type: 'timestamp' })
   releaseDate: Date;
 
   @Column()
@@ -39,4 +41,7 @@ export class Movie extends TimestampEntity {
   @ManyToMany(() => Language, (language) => language.movies, { cascade: true })
   @JoinTable()
   languages: Language[];
+
+  @OneToMany(() => Function, (func) => func.movie)
+  functions: Function[];
 }

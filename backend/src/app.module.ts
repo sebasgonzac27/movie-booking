@@ -3,6 +3,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { GenresModule } from './modules/genres/genres.module';
 import { LanguagesModule } from './modules/languages/languages.module';
 import { MoviesModule } from './modules/movies/movies.module';
+import { FunctionsModule } from './modules/functions/functions.module';
+import { PaymentMethodsModule } from './modules/payment_methods/payment_methods.module';
 
 @Module({
   imports: [
@@ -19,6 +21,8 @@ import { MoviesModule } from './modules/movies/movies.module';
     MoviesModule,
     GenresModule,
     LanguagesModule,
+    FunctionsModule,
+    PaymentMethodsModule,
   ],
   controllers: [],
   providers: [],

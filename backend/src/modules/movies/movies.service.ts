@@ -52,9 +52,14 @@ export class MoviesService {
     return await this.movieRepository.save(movie);
   }
 
-  async findAll() {
+  async findAll({ genre, language }: { genre: string; language: string }) {
     return await this.movieRepository.find({
       relations: ['genres', 'languages'],
+      where: {
+        genres: genre ? { name: genre } : undefined,
+        languages: language ? { name: language } : undefined,
+      },
+      relationLoadStrategy: 'query',
     });
   }
 
