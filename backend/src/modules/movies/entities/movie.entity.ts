@@ -1,14 +1,14 @@
+import { TimestampEntity } from 'src/common/entities';
 import { Function } from 'src/modules/functions/entities/function.entity';
 import { Genre } from 'src/modules/genres/entities/genre.entity';
 import { Language } from 'src/modules/languages/entities/language.entity';
-import { TimestampEntity } from 'src/shared/entities';
 import {
   Column,
   Entity,
-  PrimaryGeneratedColumn,
-  ManyToMany,
   JoinTable,
+  ManyToMany,
   OneToMany,
+  PrimaryGeneratedColumn,
 } from 'typeorm';
 
 @Entity()

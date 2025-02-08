@@ -1,6 +1,6 @@
+import { TimestampEntity } from 'src/common/entities';
 import { Movie } from 'src/modules/movies/entities/movie.entity';
 import { Ticket } from 'src/modules/tickets/entities/ticket.entity';
-import { TimestampEntity } from 'src/shared/entities';
 import {
   Column,
   Entity,

@@ -1,5 +1,5 @@
-import { TimestampEntity } from 'src/shared/entities';
-import { UserRole } from 'src/shared/enums';
+import { TimestampEntity } from 'src/common/entities';
+import { UserRole } from 'src/common/enums';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()

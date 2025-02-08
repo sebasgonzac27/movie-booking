@@ -1,5 +1,5 @@
+import { TimestampEntity } from 'src/common/entities';
 import { Function } from 'src/modules/functions/entities/function.entity';
-import { TimestampEntity } from 'src/shared/entities';
 import {
   Column,
   Entity,

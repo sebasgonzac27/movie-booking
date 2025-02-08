@@ -1,4 +1,4 @@
-import { TimestampEntity } from 'src/shared/entities';
+import { TimestampEntity } from 'src/common/entities';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
