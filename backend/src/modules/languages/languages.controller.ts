@@ -1,15 +1,15 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Patch,
-  Param,
+  Controller,
   Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
 } from '@nestjs/common';
-import { LanguagesService } from './languages.service';
 import { CreateLanguageDto } from './dto/create-language.dto';
 import { UpdateLanguageDto } from './dto/update-language.dto';
+import { LanguagesService } from './languages.service';
 
 @Controller('languages')
 export class LanguagesController {
@@ -26,20 +26,20 @@ export class LanguagesController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.languagesService.findOne(+id);
+  findOne(@Param('id') id: number) {
+    return this.languagesService.findOne(id);
   }
 
   @Patch(':id')
   update(
-    @Param('id') id: string,
+    @Param('id') id: number,
     @Body() updateLanguageDto: UpdateLanguageDto,
   ) {
-    return this.languagesService.update(+id, updateLanguageDto);
+    return this.languagesService.update(id, updateLanguageDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.languagesService.remove(+id);
+  remove(@Param('id') id: number) {
+    return this.languagesService.remove(id);
   }
 }

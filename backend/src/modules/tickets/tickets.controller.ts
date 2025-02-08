@@ -1,23 +1,31 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Patch,
-  Param,
+  Controller,
   Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
 } from '@nestjs/common';
-import { TicketsService } from './tickets.service';
+import { ActiveUser } from 'src/common/decorators';
+import { UserRole } from 'src/common/enums';
+import { UserActive } from 'src/common/interfaces';
+import { Auth } from '../auth/decorators';
 import { CreateTicketDto } from './dto/create-ticket.dto';
 import { UpdateTicketDto } from './dto/update-ticket.dto';
+import { TicketsService } from './tickets.service';
 
 @Controller('tickets')
 export class TicketsController {
   constructor(private readonly ticketsService: TicketsService) {}
 
   @Post()
-  create(@Body() createTicketDto: CreateTicketDto) {
-    return this.ticketsService.create(createTicketDto);
+  @Auth(UserRole.Client)
+  create(
+    @Body() createTicketDto: CreateTicketDto,
+    @ActiveUser() user: UserActive,
+  ) {
+    return this.ticketsService.create(createTicketDto, user);
   }
 
   @Get()

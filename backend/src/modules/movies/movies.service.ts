@@ -1,16 +1,16 @@
 import {
-  Injectable,
   ConflictException,
+  Injectable,
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import slugify from 'slugify';
 import { Repository } from 'typeorm';
+import { GenresService } from '../genres/genres.service';
+import { LanguagesService } from '../languages/languages.service';
 import { CreateMovieDto } from './dto/create-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
 import { Movie } from './entities/movie.entity';
-import { GenresService } from '../genres/genres.service';
-import { LanguagesService } from '../languages/languages.service';
 
 @Injectable()
 export class MoviesService {

@@ -1,5 +1,7 @@
 import { TimestampEntity } from 'src/common/entities';
 import { Function } from 'src/modules/functions/entities/function.entity';
+import { PaymentMethod } from 'src/modules/payment_methods/entities/payment_method.entity';
+import { User } from 'src/modules/users/entities/user.entity';
 import {
   Column,
   Entity,
@@ -29,17 +31,17 @@ export class Ticket extends TimestampEntity {
   @Column()
   functionId: number;
 
-  //   @ManyToOne(() => User, (user) => user.tickets)
-  //   @JoinColumn({ name: 'userId' })
-  //   user: User;
+  @ManyToOne(() => User, (user) => user.tickets)
+  @JoinColumn({ name: 'userId' })
+  user: User;
 
-  //   @Column()
-  //   userId: number;
+  @Column({ type: 'uuid' })
+  userId: string;
 
-  //   @ManyToOne(() => PaymentMethod, (paymentMethod) => paymentMethod.tickets)
-  //   @JoinColumn({ name: 'paymentMethodId' })
-  //   paymentMethod: PaymentMethod;
+  @ManyToOne(() => PaymentMethod, (paymentMethod) => paymentMethod.tickets)
+  @JoinColumn({ name: 'paymentMethodId' })
+  paymentMethod: PaymentMethod;
 
-  //   @Column()
-  //   paymentMethodId: number;
+  @Column()
+  paymentMethodId: number;
 }

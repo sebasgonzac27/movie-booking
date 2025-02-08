@@ -1,5 +1,6 @@
 import { TimestampEntity } from 'src/common/entities';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Ticket } from 'src/modules/tickets/entities/ticket.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class PaymentMethod extends TimestampEntity {
@@ -11,4 +12,7 @@ export class PaymentMethod extends TimestampEntity {
 
   @Column()
   icon: string;
+
+  @OneToMany(() => Ticket, (ticket) => ticket.paymentMethod)
+  tickets: Ticket[];
 }

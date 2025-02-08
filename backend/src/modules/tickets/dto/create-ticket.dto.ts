@@ -11,4 +11,8 @@ export class CreateTicketDto {
   @IsNumber()
   @IsPositive()
   functionId: number;
+
+  @IsNumber()
+  @IsPositive()
+  paymentMethodId: number;
 }

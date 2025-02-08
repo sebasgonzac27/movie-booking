@@ -4,6 +4,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { UserActive } from 'src/common/interfaces';
 import { Repository } from 'typeorm';
 import { FunctionsService } from '../functions/functions.service';
 import { CreateTicketDto } from './dto/create-ticket.dto';
@@ -18,13 +19,11 @@ export class TicketsService {
     private readonly functionService: FunctionsService,
   ) {}
 
-  async create(createTicketDto: CreateTicketDto) {
+  async create(createTicketDto: CreateTicketDto, user: UserActive) {
     const { quantity, functionId } = createTicketDto;
-    const foundedFunction = await this.functionService.findOne(functionId);
-    if (!foundedFunction) {
-      throw new NotFoundException(`function with id ${functionId} not found`);
-    }
+    const { sub } = user;
 
+    const foundedFunction = await this.functionService.findOne(functionId);
     if (quantity > foundedFunction.availableTickets) {
       throw new ConflictException(
         `only ${foundedFunction.availableTickets} tickets available`,
@@ -35,6 +34,7 @@ export class TicketsService {
     const ticket = this.ticketRepository.create({
       ...createTicketDto,
       totalPrice,
+      userId: sub,
     });
 
     const savedTicket = await this.ticketRepository.save(ticket);
