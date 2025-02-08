@@ -13,7 +13,7 @@ export class Function extends TimestampEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ type: 'timestamp' })
   schedule: Date;
 
   @Column()
@@ -27,5 +27,5 @@ export class Function extends TimestampEntity {
   movie: Movie;
 
   @Column()
-  movieId: number; // Columna para la clave foránea
+  movieId: number;
 }

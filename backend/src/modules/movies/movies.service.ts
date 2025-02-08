@@ -54,7 +54,7 @@ export class MoviesService {
 
   async findAll({ genre, language }: { genre: string; language: string }) {
     return await this.movieRepository.find({
-      relations: ['genres', 'languages'],
+      relations: ['genres', 'languages', 'functions'],
       where: {
         genres: genre ? { name: genre } : undefined,
         languages: language ? { name: language } : undefined,
@@ -66,7 +66,7 @@ export class MoviesService {
   async findOne(slug: string) {
     const movie = await this.movieRepository.findOne({
       where: { slug },
-      relations: ['genres', 'languages'],
+      relations: ['genres', 'languages', 'functions'],
     });
     if (!movie) {
       throw new NotFoundException(`movie with slug ${slug} not found`);
@@ -79,7 +79,7 @@ export class MoviesService {
 
     const movie = await this.movieRepository.findOne({
       where: { id },
-      relations: ['genres'],
+      relations: ['genres', 'languages', 'functions'],
     });
 
     if (!movie) throw new NotFoundException(`Movie with ID ${id} not found`);
