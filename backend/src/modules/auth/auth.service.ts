@@ -20,7 +20,8 @@ export class AuthService {
   async signIn(signInDto: SignInDto) {
     const { email, password } = signInDto;
 
-    const user = await this.usersService.findOneByEmail(email);
+    const user = await this.usersService.findByEmailWithPassword(email);
+
     if (!user) {
       throw new UnauthorizedException('user or password is wrong');
     }
@@ -41,14 +42,18 @@ export class AuthService {
 
   async signUp(signUpDto: SignUpDto) {
     const { email, password } = signUpDto;
+
     const user = await this.usersService.findOneByEmail(email);
+
     if (user) {
       throw new ConflictException('user already exists');
     }
+
     const newUser = await this.usersService.create({
       ...signUpDto,
       password: await this.passwordService.hashPassword(password),
     });
+
     return await this.usersService.create(newUser);
   }
 }

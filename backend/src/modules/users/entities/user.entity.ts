@@ -16,7 +16,7 @@ export class User extends TimestampEntity {
   @Column({ unique: true, nullable: false })
   email: string;
 
-  @Column({ nullable: false })
+  @Column({ nullable: false, select: false })
   password: string;
 
   @Column({ type: 'enum', enum: UserRole, default: UserRole.Admin })
