@@ -1,0 +1,11 @@
+<button
+  [ngClass]="{
+    button: true,
+    'button--primary': variant === 'primary',
+    'button--secondary': variant === 'secondary',
+    'button--tertiary': variant === 'tertiary',
+  }"
+  [disabled]="disabled"
+>
+  <ng-content></ng-content>
+</button>

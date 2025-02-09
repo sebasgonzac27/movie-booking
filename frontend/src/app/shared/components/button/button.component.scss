@@ -1,0 +1,42 @@
+@use "variables";
+
+.button {
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  border: none;
+  width: 100%;
+  font-weight: variables.$semi-bold;
+
+  &--primary {
+    background-color: variables.$primary-color;
+    color: variables.$background-color;
+
+    &:hover,
+    &:focus {
+      background-color: darken(variables.$primary-color, 10%);
+    }
+  }
+
+  &--secondary {
+    background-color: variables.$background-color;
+    color: variables.$text-primary;
+    border: 1px solid variables.$secondary-color;
+
+    &:hover {
+      background-color: variables.$tertiary-color;
+    }
+  }
+
+  &--tertiary {
+    background-color: variables.$tertiary-color;
+    color: variables.$text-primary;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}

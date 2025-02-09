@@ -1,0 +1,25 @@
+@use "variables";
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input {
+  background-color: variables.$tertiary-color;
+  color: variables.$text-secondary;
+  border: none;
+  border-radius: 1rem;
+  padding: 1rem;
+  width: 100%;
+
+  &:focus {
+    outline: 2px solid variables.$primary-color;
+  }
+}
+
+.label {
+  color: variables.$text-primary;
+  font-weight: variables.$semi-bold;
+}
