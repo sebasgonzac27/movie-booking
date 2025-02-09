@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { FirebaseApp, initializeApp } from 'firebase/app';
 import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
@@ -32,7 +32,9 @@ export class FirebaseService {
       return downloadURL;
     } catch (error) {
       console.error('Upload failed', error);
-      throw new Error('Upload failed');
+      throw new InternalServerErrorException(
+        'File upload failed. Please try again later.',
+      );
     }
   }
 }
