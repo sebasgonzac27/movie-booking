@@ -26,7 +26,7 @@ export class TicketsService {
     const foundedFunction = await this.functionService.findOne(functionId);
     if (quantity > foundedFunction.availableTickets) {
       throw new ConflictException(
-        `only ${foundedFunction.availableTickets} tickets available`,
+        `Only ${foundedFunction.availableTickets} tickets available.`,
       );
     }
 
@@ -52,7 +52,7 @@ export class TicketsService {
   async findOne(id: number) {
     const ticket = await this.ticketRepository.findOne({ where: { id } });
     if (!ticket) {
-      throw new NotFoundException(`ticket with id ${id} not found`);
+      throw new NotFoundException(`Ticket with id ${id} not found.`);
     }
     return ticket;
   }
@@ -60,7 +60,7 @@ export class TicketsService {
   async update(id: number, updateTicketDto: UpdateTicketDto) {
     const result = await this.ticketRepository.update(id, updateTicketDto);
     if (!result.affected) {
-      throw new NotFoundException(`ticket with id ${id} not found`);
+      throw new NotFoundException(`Ticket with id ${id} not found.`);
     }
     return result;
   }
@@ -68,7 +68,7 @@ export class TicketsService {
   async remove(id: number) {
     const result = await this.ticketRepository.softDelete(id);
     if (!result.affected) {
-      throw new NotFoundException(`ticket with id ${id} not found`);
+      throw new NotFoundException(`Ticket with id ${id} not found.`);
     }
     return result;
   }

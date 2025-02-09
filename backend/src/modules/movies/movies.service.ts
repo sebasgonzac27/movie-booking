@@ -59,7 +59,7 @@ export class MoviesService {
 
   async findAll({ genre, language }: { genre: string; language: string }) {
     return await this.movieRepository.find({
-      relations: ['genres', 'languages', 'functions'],
+      relations: ['genres', 'languages'],
       where: {
         genres: genre ? { name: genre } : undefined,
         languages: language ? { name: language } : undefined,
@@ -74,7 +74,7 @@ export class MoviesService {
       relations: ['genres', 'languages', 'functions'],
     });
     if (!movie) {
-      throw new NotFoundException(`movie with slug ${slug} not found`);
+      throw new NotFoundException(`Movie with slug ${slug} not found.`);
     }
     return movie;
   }
@@ -87,7 +87,7 @@ export class MoviesService {
       relations: ['genres', 'languages', 'functions'],
     });
 
-    if (!movie) throw new NotFoundException(`Movie with ID ${id} not found`);
+    if (!movie) throw new NotFoundException(`Movie with ID ${id} not found.`);
 
     let genreEntities = movie.genres;
 
@@ -116,7 +116,7 @@ export class MoviesService {
   async remove(id: number) {
     const result = await this.movieRepository.softDelete(id);
     if (result.affected === 0) {
-      throw new NotFoundException(`movie with id ${id} not found`);
+      throw new NotFoundException(`Movie with id ${id} not found.`);
     }
     return result;
   }

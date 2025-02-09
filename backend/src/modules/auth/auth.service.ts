@@ -23,7 +23,7 @@ export class AuthService {
     const user = await this.usersService.findByEmailWithPassword(email);
 
     if (!user) {
-      throw new UnauthorizedException('user or password is wrong');
+      throw new UnauthorizedException('User is wrong.');
     }
 
     const isPasswordValid = await this.passwordService.comparePasswords(
@@ -32,7 +32,7 @@ export class AuthService {
     );
 
     if (!isPasswordValid) {
-      throw new UnauthorizedException('user or password is wrong');
+      throw new UnauthorizedException('Password is wrong.');
     }
 
     const payload = { sub: user.id, email: user.email, role: user.role };
@@ -46,7 +46,7 @@ export class AuthService {
     const user = await this.usersService.findOneByEmail(email);
 
     if (user) {
-      throw new ConflictException('user already exists');
+      throw new ConflictException('User already exists.');
     }
 
     const newUser = await this.usersService.create({

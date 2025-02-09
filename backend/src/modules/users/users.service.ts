@@ -34,7 +34,7 @@ export class UsersService {
   async findOne(id: string) {
     const user = await this.userRepository.findOneBy({ id });
     if (!user) {
-      throw new NotFoundException(`user with id ${id} not found`);
+      throw new NotFoundException(`User with id ${id} not found.`);
     }
     return user;
   }
@@ -42,7 +42,7 @@ export class UsersService {
   async update(id: string, updateUserDto: UpdateUserDto) {
     const result = await this.userRepository.update(id, updateUserDto);
     if (!result.affected) {
-      throw new NotFoundException(`user with id ${id} not found`);
+      throw new NotFoundException(`User with id ${id} not found.`);
     }
     return result;
   }
@@ -50,7 +50,7 @@ export class UsersService {
   async remove(id: string) {
     const result = await this.userRepository.softDelete(id);
     if (!result.affected) {
-      throw new NotFoundException(`user with id ${id} not found`);
+      throw new NotFoundException(`User with id ${id} not found.`);
     }
     return result;
   }

@@ -1,9 +1,9 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreatePaymentMethodDto } from './dto/create-payment_method.dto';
 import { UpdatePaymentMethodDto } from './dto/update-payment_method.dto';
-import { InjectRepository } from '@nestjs/typeorm';
 import { PaymentMethod } from './entities/payment_method.entity';
-import { Repository } from 'typeorm';
 @Injectable()
 export class PaymentMethodsService {
   constructor(
@@ -24,7 +24,7 @@ export class PaymentMethodsService {
       where: { id },
     });
     if (!paymentMethod) {
-      throw new NotFoundException(`payment method with id ${id} not found`);
+      throw new NotFoundException(`Payment method with id ${id} not found.`);
     }
     return paymentMethod;
   }
@@ -35,7 +35,7 @@ export class PaymentMethodsService {
       updatePaymentMethodDto,
     );
     if (!result.affected) {
-      throw new NotFoundException(`payment method with id ${id} not found`);
+      throw new NotFoundException(`Payment method with id ${id} not found.`);
     }
     return result;
   }
@@ -43,7 +43,7 @@ export class PaymentMethodsService {
   async remove(id: number) {
     const result = await this.paymentMethodRepository.softDelete(id);
     if (!result.affected) {
-      throw new NotFoundException(`payment method with id ${id} not found`);
+      throw new NotFoundException(`Payment method with id ${id} not found.`);
     }
     return result;
   }

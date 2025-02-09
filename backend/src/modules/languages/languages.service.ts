@@ -31,7 +31,7 @@ export class LanguagesService {
   async findOne(id: number) {
     const language = await this.languageRepository.findOneBy({ id });
     if (!language) {
-      throw new NotFoundException(`language with id ${id} not found`);
+      throw new NotFoundException(`Language with id ${id} not found.`);
     }
     return language;
   }
@@ -39,7 +39,7 @@ export class LanguagesService {
   async update(id: number, updateLanguageDto: UpdateLanguageDto) {
     const result = await this.languageRepository.update(id, updateLanguageDto);
     if (result.affected === 0) {
-      throw new NotFoundException(`language with id ${id} not found`);
+      throw new NotFoundException(`Language with id ${id} not found.`);
     }
     return result;
   }
@@ -47,7 +47,7 @@ export class LanguagesService {
   async remove(id: number) {
     const result = await this.languageRepository.softDelete(id);
     if (result.affected === 0) {
-      throw new NotFoundException(`language with id ${id} not found`);
+      throw new NotFoundException(`Language with id ${id} not found.`);
     }
     return result;
   }

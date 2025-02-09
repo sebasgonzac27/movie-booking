@@ -1,8 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { CreateFunctionDto } from './dto/create-function.dto';
-import { UpdateFunctionDto } from './dto/update-function.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { CreateFunctionDto } from './dto/create-function.dto';
+import { UpdateFunctionDto } from './dto/update-function.dto';
 import { Function } from './entities/function.entity';
 
 @Injectable()
@@ -25,7 +25,7 @@ export class FunctionsService {
       where: { id },
     });
     if (!findedFunction) {
-      throw new NotFoundException(`function with id ${id} not found`);
+      throw new NotFoundException(`Function with id ${id} not found.`);
     }
     return findedFunction;
   }
@@ -33,7 +33,7 @@ export class FunctionsService {
   async update(id: number, updateFunctionDto: UpdateFunctionDto) {
     const result = await this.functionRepository.update(id, updateFunctionDto);
     if (!result.affected) {
-      throw new NotFoundException(`function with id ${id} not found`);
+      throw new NotFoundException(`Function with id ${id} not found.`);
     }
     return result;
   }
@@ -41,7 +41,7 @@ export class FunctionsService {
   async remove(id: number) {
     const result = await this.functionRepository.softDelete(id);
     if (!result.affected) {
-      throw new NotFoundException(`function with id ${id} not found`);
+      throw new NotFoundException(`Function with id ${id} not found.`);
     }
     return result;
   }
