@@ -6,6 +6,7 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import slugify from 'slugify';
 import { Repository } from 'typeorm';
+import { FirebaseService } from '../firebase/firebase.service';
 import { GenresService } from '../genres/genres.service';
 import { LanguagesService } from '../languages/languages.service';
 import { CreateMovieDto } from './dto/create-movie.dto';
@@ -19,9 +20,10 @@ export class MoviesService {
     private readonly movieRepository: Repository<Movie>,
     private readonly genresService: GenresService,
     private readonly languagesService: LanguagesService,
+    private readonly firebaseService: FirebaseService,
   ) {}
 
-  async create(createMovieDto: CreateMovieDto) {
+  async create(createMovieDto: CreateMovieDto, cover: Express.Multer.File) {
     const { title, genres, languages } = createMovieDto;
     const slug = slugify(title, {
       lower: true,
@@ -42,11 +44,14 @@ export class MoviesService {
       languages.map(async (name) => this.languagesService.findOrCreate(name)),
     );
 
+    const urlCover = await this.firebaseService.uploadFile(cover);
+
     const movie = this.movieRepository.create({
       ...createMovieDto,
       slug,
       genres: genreEntities,
       languages: languageEntities,
+      cover: urlCover,
     });
 
     return await this.movieRepository.save(movie);

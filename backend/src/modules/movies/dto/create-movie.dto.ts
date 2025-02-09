@@ -1,9 +1,9 @@
+import { Transform } from 'class-transformer';
 import {
   ArrayNotEmpty,
   IsArray,
+  IsInt,
   IsISO8601,
-  IsNumber,
-  IsPositive,
   IsString,
 } from 'class-validator';
 
@@ -17,11 +17,8 @@ export class CreateMovieDto {
   @IsISO8601()
   releaseDate: Date;
 
-  @IsString()
-  cover: string;
-
-  @IsNumber()
-  @IsPositive()
+  @IsInt()
+  @Transform(({ value }) => Number(value))
   duration: number;
 
   @IsArray()

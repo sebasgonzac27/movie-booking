@@ -10,6 +10,7 @@ import { PaymentMethodsModule } from './modules/payment_methods/payment_methods.
 import { SecurityModule } from './modules/security/security.module';
 import { TicketsModule } from './modules/tickets/tickets.module';
 import { UsersModule } from './modules/users/users.module';
+import { FirebaseModule } from './modules/firebase/firebase.module';
 
 @Module({
   imports: [
@@ -36,6 +37,7 @@ import { UsersModule } from './modules/users/users.module';
     UsersModule,
     AuthModule,
     SecurityModule,
+    FirebaseModule,
   ],
   controllers: [],
   providers: [],
