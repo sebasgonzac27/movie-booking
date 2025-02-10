@@ -36,13 +36,8 @@ export class MoviesService {
       throw new ConflictException('movie already exists');
     }
 
-    const genreEntities = await Promise.all(
-      genres.map(async (name) => this.genresService.findOrCreate(name)),
-    );
-
-    const languageEntities = await Promise.all(
-      languages.map(async (name) => this.languagesService.findOrCreate(name)),
-    );
+    const genreEntities = await this.genresService.findByIds(genres);
+    const languageEntities = await this.languagesService.findByIds(languages);
 
     const urlCover = await this.firebaseService.uploadFile(cover);
 
@@ -92,17 +87,13 @@ export class MoviesService {
     let genreEntities = movie.genres;
 
     if (genres) {
-      genreEntities = await Promise.all(
-        genres.map(async (name) => this.genresService.findOrCreate(name)),
-      );
+      genreEntities = await this.genresService.findByIds(genres);
     }
 
     let languageEntities = movie.languages;
 
     if (languages) {
-      languageEntities = await Promise.all(
-        languages.map(async (name) => this.languagesService.findOrCreate(name)),
-      );
+      languageEntities = await this.languagesService.findByIds(languages);
     }
 
     Object.assign(movie, updateData, {

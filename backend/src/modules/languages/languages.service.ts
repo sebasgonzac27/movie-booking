@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { CreateLanguageDto } from './dto/create-language.dto';
 import { UpdateLanguageDto } from './dto/update-language.dto';
 import { Language } from './entities/language.entity';
@@ -26,6 +26,14 @@ export class LanguagesService {
 
   async findAll() {
     return await this.languageRepository.find({ order: { name: 'ASC' } });
+  }
+
+  async findByIds(ids: number[]) {
+    const languages = await this.languageRepository.findBy({ id: In(ids) });
+    if (languages.length !== ids.length) {
+      throw new NotFoundException('Some languages were not found.');
+    }
+    return languages;
   }
 
   async findOne(id: number) {

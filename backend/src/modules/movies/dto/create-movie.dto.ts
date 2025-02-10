@@ -25,11 +25,11 @@ export class CreateMovieDto {
 
   @IsArray()
   @ArrayNotEmpty()
-  @IsString({ each: true })
-  genres: string[];
+  @IsInt({ each: true })
+  genres: number[];
 
   @IsArray()
   @ArrayNotEmpty()
-  @IsString({ each: true })
-  languages: string[];
+  @IsInt({ each: true })
+  languages: number[];
 }
