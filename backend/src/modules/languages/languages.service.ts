@@ -25,7 +25,7 @@ export class LanguagesService {
   }
 
   async findAll() {
-    return await this.languageRepository.find();
+    return await this.languageRepository.find({ order: { name: 'ASC' } });
   }
 
   async findOne(id: number) {

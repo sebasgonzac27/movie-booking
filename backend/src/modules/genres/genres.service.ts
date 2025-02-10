@@ -26,7 +26,7 @@ export class GenresService {
   }
 
   async findAll() {
-    return await this.genreRepository.find();
+    return await this.genreRepository.find({ order: { name: 'ASC' } });
   }
 
   async findOne(id: number) {

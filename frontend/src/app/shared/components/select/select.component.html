@@ -1,6 +1,12 @@
 <div class="select-container">
   <app-typography type="label">{{ label }}</app-typography>
-  <select class="select" [id]="id" [name]="name" multiple>
+  <select
+    class="select"
+    [id]="id"
+    [name]="name"
+    [multiple]="multiple"
+    (change)="handleInput($event)"
+  >
     <option
       class="option"
       *ngFor="let option of options"

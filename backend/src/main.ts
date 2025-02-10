@@ -1,6 +1,6 @@
+import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -14,6 +14,12 @@ async function bootstrap() {
       transform: true,
     }),
   );
+
+  app.enableCors({
+    origin: 'http://localhost:4200', // Cambia por el origen permitido
+    methods: 'GET,POST,PUT,DELETE', // Métodos HTTP permitidos
+    allowedHeaders: 'Content-Type, Authorization', // Encabezados permitidos
+  });
 
   await app.listen(process.env.PORT ?? 3000);
 }

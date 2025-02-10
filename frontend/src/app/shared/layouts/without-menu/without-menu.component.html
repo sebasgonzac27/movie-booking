@@ -1,0 +1,15 @@
+<div class="without-menu">
+  <header class="header">
+    <button class="button" (click)="goBack()">
+      <app-arrow-left></app-arrow-left>
+    </button>
+    <app-typography class="title" type="title">{{ name }}</app-typography>
+    <div class="empty"></div>
+  </header>
+  <main class="main">
+    <ng-content select="[main]"></ng-content>
+  </main>
+  <footer class="footer">
+    <ng-content select="[footer]"></ng-content>
+  </footer>
+</div>

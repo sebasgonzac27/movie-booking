@@ -1,13 +1,11 @@
-<div class="input-container">
+<div class="text-area-container">
   <app-typography type="label">{{ label }}</app-typography>
-  <input
-    class="input"
+  <textarea
+    class="text-area"
     [id]="id"
     [name]="name"
     [placeholder]="placeholder"
-    [type]="type"
-    [disabled]="disabled"
-    [accept]="accept"
+    [maxLength]="maxLength"
     (input)="handleInput($event)"
-  />
+  ></textarea>
 </div>

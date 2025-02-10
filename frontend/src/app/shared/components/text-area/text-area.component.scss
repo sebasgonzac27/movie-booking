@@ -1,0 +1,26 @@
+@use "variables";
+
+.text-area-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.text-area {
+  background-color: variables.$tertiary-color;
+  color: variables.$text-primary;
+  border: none;
+  border-radius: 1rem;
+  padding: 1rem;
+  width: 100%;
+  resize: none;
+  field-sizing: content;
+
+  &::placeholder {
+    color: variables.$text-secondary;
+  }
+
+  &:focus {
+    outline: 2px solid variables.$primary-color;
+  }
+}

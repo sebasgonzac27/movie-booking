@@ -5,6 +5,7 @@ import {
   IsInt,
   IsISO8601,
   IsString,
+  MaxLength,
 } from 'class-validator';
 
 export class CreateMovieDto {
@@ -12,6 +13,7 @@ export class CreateMovieDto {
   title: string;
 
   @IsString()
+  @MaxLength(600)
   storyline: string;
 
   @IsISO8601()

@@ -22,7 +22,7 @@ export class Movie extends TimestampEntity {
   @Column()
   title: string;
 
-  @Column()
+  @Column({ type: 'varchar', length: 600 })
   storyline: string;
 
   @Column({ type: 'timestamp' })

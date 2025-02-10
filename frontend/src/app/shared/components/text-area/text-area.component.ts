@@ -1,34 +1,31 @@
-import { CommonModule } from '@angular/common';
 import { Component, forwardRef, Input } from '@angular/core';
 import {
   ControlValueAccessor,
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { Option } from '@app/shared/interfaces';
 import { TypographyComponent } from '../typography/typography.component';
 
 @Component({
-  selector: 'app-select',
-  imports: [CommonModule, TypographyComponent, ReactiveFormsModule],
+  selector: 'app-text-area',
+  imports: [TypographyComponent, ReactiveFormsModule],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => SelectComponent),
+      useExisting: forwardRef(() => TextAreaComponent),
       multi: true,
     },
   ],
-  templateUrl: './select.component.html',
-  styleUrl: './select.component.scss',
+  templateUrl: './text-area.component.html',
+  styleUrl: './text-area.component.scss',
 })
-export class SelectComponent<T> implements ControlValueAccessor {
+export class TextAreaComponent<T> implements ControlValueAccessor {
   @Input() label = '';
   @Input() id = '';
   @Input() name = '';
   @Input() disabled = false;
-  @Input() multiple = false;
   @Input() placeholder = '';
-  @Input() options: Option[] = [];
+  @Input() maxLength = 1000;
 
   value: T | null = null;
   onChange: (value: T | null) => void = () => {};
@@ -51,14 +48,8 @@ export class SelectComponent<T> implements ControlValueAccessor {
   }
 
   handleInput(event: Event): void {
-    const input = event.target as HTMLSelectElement;
-    if (this.multiple) {
-      this.value = Array.from(input.selectedOptions).map(
-        (option) => option.value,
-      ) as T;
-    } else {
-      this.value = input.value as T;
-    }
+    const input = event.target as HTMLTextAreaElement;
+    this.value = input.value as T;
     this.onChange(this.value);
     this.onTouched();
   }

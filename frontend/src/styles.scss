@@ -26,3 +26,17 @@ h4 {
 p {
   text-wrap: pretty;
 }
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background-color: variables.$tertiary-color;
+  border: none;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: variables.$secondary-color;
+  border-radius: 1rem;
+}

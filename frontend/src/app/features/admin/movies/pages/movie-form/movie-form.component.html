@@ -1,0 +1,59 @@
+<app-without-menu class="movie-form-container" name="New Movie">
+  <form class="movie-form" [formGroup]="formNewMovie" main>
+    <app-input
+      label="Cover"
+      placeholder="Cover"
+      name="cover"
+      type="file"
+      formControlName="cover"
+      accept="image/*"
+    ></app-input>
+    <img [src]="imagePreview" alt="Cover of movie" class="movie-cover" />
+    <app-input
+      label="Title"
+      placeholder="Title"
+      name="title"
+      type="text"
+      formControlName="title"
+    ></app-input>
+    <app-text-area
+      label="Storyline"
+      placeholder="Storyline"
+      name="storyline"
+      type="text"
+      [maxLength]="600"
+      formControlName="storyline"
+    ></app-text-area>
+    <app-input
+      label="Release Date"
+      placeholder="Release Date"
+      name="releaseDate"
+      type="date"
+      formControlName="releaseDate"
+    ></app-input>
+    <app-input
+      label="Duration (minutes)"
+      placeholder="Duration"
+      name="duration"
+      type="number"
+      formControlName="duration"
+    ></app-input>
+    <app-select
+      label="Genres"
+      id="genres"
+      name="genres"
+      [multiple]="true"
+      [options]="genres"
+      formControlName="genres"
+    ></app-select>
+    <app-select
+      label="Languages"
+      id="languages"
+      name="languages"
+      [multiple]="true"
+      [options]="languages"
+      formControlName="languages"
+    ></app-select>
+  </form>
+  <app-button class="button" (click)="onSubmit()" footer>Confirm</app-button>
+</app-without-menu>

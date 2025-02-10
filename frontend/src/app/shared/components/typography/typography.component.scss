@@ -5,4 +5,10 @@
     color: variables.$text-primary;
     font-weight: variables.$semi-bold;
   }
+
+  &--title {
+    color: variables.$text-primary;
+    font-weight: variables.$bold;
+    font-size: 1.5rem;
+  }
 }
