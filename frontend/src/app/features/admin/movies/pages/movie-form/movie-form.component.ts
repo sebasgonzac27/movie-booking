@@ -13,7 +13,7 @@ import {
 } from '@app/shared/components';
 import { type Option } from '@app/shared/interfaces';
 import { WithoutMenuComponent } from '@app/shared/layouts';
-import { catchError, Subscription, throwError } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { GenresService, LanguagesService, MoviesService } from '../../services';
 
 @Component({
@@ -84,26 +84,21 @@ export class MovieFormComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    if (this.formNewMovie.invalid) {
-      return;
-    }
-    this.moviesService
-      .createMovie(this.formNewMovie.value)
-      .pipe(
-        catchError((error) => {
-          console.error(error);
-          return throwError(() => error);
-        }),
-      )
-      .subscribe(() => {
-        this.formNewMovie.reset();
-      });
+    this.formNewMovie.reset();
+    // this.moviesService.createMovie(this.formNewMovie.value).subscribe(() => {
+    //   this.formNewMovie.reset();
+    // });
   }
 
   subscribeToCoverChanges(): void {
     const coverSubscription = this.formNewMovie
       .get('cover')
       ?.valueChanges.subscribe((file: File) => {
+        if (!file) {
+          this.imagePreview = 'https://placehold.co/400x600';
+          return;
+        }
+
         if (!file.type.includes('image')) {
           this.formNewMovie.get('cover')?.setErrors({ invalidFileType: true });
           return;
