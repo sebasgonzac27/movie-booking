@@ -25,11 +25,11 @@ export class CreateMovieDto {
 
   @IsArray()
   @ArrayNotEmpty()
-  @IsInt({ each: true })
+  @Transform(({ value }) => JSON.parse(value))
   genres: number[];
 
   @IsArray()
   @ArrayNotEmpty()
-  @IsInt({ each: true })
+  @Transform(({ value }) => JSON.parse(value))
   languages: number[];
 }
