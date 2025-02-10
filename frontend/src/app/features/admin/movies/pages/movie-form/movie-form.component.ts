@@ -13,8 +13,8 @@ import {
 } from '@app/shared/components';
 import { type Option } from '@app/shared/interfaces';
 import { WithoutMenuComponent } from '@app/shared/layouts';
-import { Subscription } from 'rxjs';
-import { GenresService, LanguagesService } from '../../services';
+import { catchError, Subscription, throwError } from 'rxjs';
+import { GenresService, LanguagesService, MoviesService } from '../../services';
 
 @Component({
   selector: 'app-movie-form',
@@ -41,6 +41,7 @@ export class MovieFormComponent implements OnInit, OnDestroy {
   constructor(
     private readonly genresService: GenresService,
     private readonly languagesService: LanguagesService,
+    private readonly moviesService: MoviesService,
     private readonly formBuilder: FormBuilder,
   ) {
     this.formNewMovie = this.formBuilder.group({
@@ -83,7 +84,20 @@ export class MovieFormComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    console.log(this.formNewMovie.value);
+    if (this.formNewMovie.invalid) {
+      return;
+    }
+    this.moviesService
+      .createMovie(this.formNewMovie.value)
+      .pipe(
+        catchError((error) => {
+          console.error(error);
+          return throwError(() => error);
+        }),
+      )
+      .subscribe(() => {
+        this.formNewMovie.reset();
+      });
   }
 
   subscribeToCoverChanges(): void {
