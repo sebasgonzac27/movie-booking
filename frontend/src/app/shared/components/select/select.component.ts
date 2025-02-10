@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { TypographyComponent } from '../typography/typography.component';
 
 @Component({
   selector: 'app-select',
-  imports: [CommonModule],
+  imports: [CommonModule, TypographyComponent],
   templateUrl: './select.component.html',
   styleUrl: './select.component.scss',
 })

@@ -1,0 +1,8 @@
+@use "variables";
+
+.typography {
+  &--label {
+    color: variables.$text-primary;
+    font-weight: variables.$semi-bold;
+  }
+}

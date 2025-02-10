@@ -1,8 +1,9 @@
 <div class="input-container">
-  <label class="label" [for]="name">{{ label }}</label>
+  <app-typography type="label">{{ label }}</app-typography>
   <input
     class="input"
-    [id]="name"
+    [id]="id"
+    [name]="name"
     [placeholder]="placeholder"
     [type]="type"
     [disabled]="disabled"
