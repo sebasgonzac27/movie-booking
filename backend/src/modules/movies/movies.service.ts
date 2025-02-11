@@ -7,6 +7,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import slugify from 'slugify';
 import { Repository } from 'typeorm';
 import { FirebaseService } from '../firebase/firebase.service';
+import { Function } from '../functions/entities/function.entity';
 import { GenresService } from '../genres/genres.service';
 import { LanguagesService } from '../languages/languages.service';
 import { CreateMovieDto } from './dto/create-movie.dto';
@@ -24,32 +25,59 @@ export class MoviesService {
   ) {}
 
   async create(createMovieDto: CreateMovieDto, cover: Express.Multer.File) {
-    const { title, genres, languages } = createMovieDto;
-    const slug = slugify(title, {
-      lower: true,
-      remove: /[*+~.()'"!:@]/g,
-    });
+    const queryRunner =
+      this.movieRepository.manager.connection.createQueryRunner();
 
-    const existingMovie = await this.movieRepository.findOneBy({ slug });
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
 
-    if (existingMovie) {
-      throw new ConflictException('movie already exists');
+    try {
+      const { title, genres, languages, functions } = createMovieDto;
+      const slug = slugify(title, {
+        lower: true,
+        remove: /[*+~.()'"!:@]/g,
+      });
+
+      const existingMovie = await queryRunner.manager.findOne(Movie, {
+        where: { slug },
+      });
+      if (existingMovie) {
+        throw new ConflictException('Movie already exists');
+      }
+
+      const genreEntities = await this.genresService.findByIds(genres);
+      const languageEntities = await this.languagesService.findByIds(languages);
+      const urlCover = await this.firebaseService.uploadFile(cover);
+
+      const movie = queryRunner.manager.create(Movie, {
+        ...createMovieDto,
+        slug,
+        genres: genreEntities,
+        languages: languageEntities,
+        cover: urlCover,
+      });
+
+      const savedMovie = await queryRunner.manager.save(movie);
+
+      if (functions && functions.length > 0) {
+        const functionEntities = functions.map((func) =>
+          queryRunner.manager.create(Function, {
+            ...func,
+            movie: savedMovie,
+          }),
+        );
+
+        await queryRunner.manager.save(functionEntities);
+      }
+
+      await queryRunner.commitTransaction();
+      return savedMovie;
+    } catch (error) {
+      await queryRunner.rollbackTransaction();
+      throw error;
+    } finally {
+      await queryRunner.release();
     }
-
-    const genreEntities = await this.genresService.findByIds(genres);
-    const languageEntities = await this.languagesService.findByIds(languages);
-
-    const urlCover = await this.firebaseService.uploadFile(cover);
-
-    const movie = this.movieRepository.create({
-      ...createMovieDto,
-      slug,
-      genres: genreEntities,
-      languages: languageEntities,
-      cover: urlCover,
-    });
-
-    return await this.movieRepository.save(movie);
   }
 
   async findAll({ genre, language }: { genre: string; language: string }) {

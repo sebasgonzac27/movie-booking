@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import { ButtonComponent } from '@app/shared/components';
 import { WithoutMenuComponent } from '@app/shared/layouts';
-import { MovieFormComponent } from '../../components';
+import { FunctionFormComponent, MovieFormComponent } from '../../components';
 import { MoviesService } from '../../services';
 
 @Component({
@@ -17,6 +17,7 @@ import { MoviesService } from '../../services';
     ButtonComponent,
     WithoutMenuComponent,
     MovieFormComponent,
+    FunctionFormComponent,
   ],
   templateUrl: './movie-new.component.html',
   styleUrl: './movie-new.component.scss',
@@ -36,6 +37,7 @@ export class MovieNewComponent {
       duration: [0, Validators.required],
       genres: [[], Validators.required],
       languages: [[], Validators.required],
+      functions: this.formBuilder.array([]),
     });
   }
 

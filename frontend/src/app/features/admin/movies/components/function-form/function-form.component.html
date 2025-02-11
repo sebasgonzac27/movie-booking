@@ -1,0 +1,44 @@
+<form class="function-form" [formGroup]="formGroup">
+  <div class="functions" formArrayName="functions">
+    <div
+      class="function"
+      *ngFor="let function of functions.controls; let i = index"
+      [formGroupName]="i"
+    >
+      <header class="function__header">
+        <app-typography type="title"> Function {{ i + 1 }} </app-typography>
+        <app-minus
+          class="function__icon-remove"
+          (click)="removeFunction(i)"
+        ></app-minus>
+      </header>
+
+      <app-input
+        label="Schedule"
+        placeholder="Schedule"
+        name="schedule"
+        type="datetime-local"
+        formControlName="schedule"
+      ></app-input>
+
+      <app-input
+        label="Available Tickets"
+        placeholder="Available Tickets"
+        name="availableTickets"
+        type="number"
+        formControlName="availableTickets"
+      ></app-input>
+
+      <app-input
+        label="Price"
+        placeholder="Price"
+        name="price"
+        type="number"
+        formControlName="price"
+      ></app-input>
+    </div>
+  </div>
+  <app-button (click)="addFunction()" variant="tertiary"
+    >Add function</app-button
+  >
+</form>

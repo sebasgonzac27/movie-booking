@@ -20,6 +20,7 @@ export class MoviesService {
     formData.append('genres', JSON.stringify(movie.genres));
     formData.append('languages', JSON.stringify(movie.languages));
     formData.append('cover', movie.cover, movie.cover.name);
+    formData.append('functions', JSON.stringify(movie.functions));
 
     return this.httpClient.post(`${environment.apiUrl}/movies`, formData);
   }

@@ -7,6 +7,7 @@ import {
   IsString,
   MaxLength,
 } from 'class-validator';
+import { CreateFunctionDto } from 'src/modules/functions/dto/create-function.dto';
 
 export class CreateMovieDto {
   @IsString()
@@ -32,4 +33,8 @@ export class CreateMovieDto {
   @ArrayNotEmpty()
   @Transform(({ value }) => JSON.parse(value))
   languages: number[];
+
+  @IsArray()
+  @Transform(({ value }) => JSON.parse(value))
+  functions: CreateFunctionDto[];
 }

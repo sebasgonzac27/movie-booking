@@ -1,4 +1,7 @@
 <app-without-menu class="movie-form-container" name="New Movie">
-  <app-movie-form [formGroup]="formNewMovie" main></app-movie-form>
-  <app-button class="button" (click)="onSubmit()" footer>Confirm</app-button>
+  <div class="main" main>
+    <app-movie-form [formGroup]="formNewMovie"></app-movie-form>
+    <app-function-form [formGroup]="formNewMovie"></app-function-form>
+    <app-button class="button" (click)="onSubmit()">Confirm</app-button>
+  </div>
 </app-without-menu>

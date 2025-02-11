@@ -24,7 +24,8 @@ export class InputComponent<T> implements ControlValueAccessor {
   @Input() id = '';
   @Input() name = '';
   @Input() placeholder = '';
-  @Input() type: 'text' | 'number' | 'date' | 'password' = 'text';
+  @Input() type: 'text' | 'number' | 'date' | 'datetime-local' | 'password' =
+    'text';
   @Input() disabled = false;
 
   value: T | null = null;

@@ -1,0 +1,38 @@
+@use "variables";
+
+.function-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.functions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.function {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__icon-remove {
+    width: 20px;
+    height: 20px;
+    color: variables.$text-secondary;
+    background-color: variables.$tertiary-color;
+    border-radius: 5px;
+    cursor: pointer;
+    &:hover {
+      background-color: variables.$primary-color;
+      color: variables.$background-color;
+    }
+  }
+}
