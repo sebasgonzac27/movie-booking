@@ -1,14 +1,6 @@
 <app-without-menu class="movie-form-container" name="New Movie">
   <form class="movie-form" [formGroup]="formNewMovie" main>
-    <app-input
-      label="Cover"
-      placeholder="Cover"
-      name="cover"
-      type="file"
-      formControlName="cover"
-      accept="image/*"
-    ></app-input>
-    <img [src]="imagePreview" alt="Cover of movie" class="movie-cover" />
+    <app-image-picker label="Cover" formControlName="cover"></app-image-picker>
     <app-input
       label="Title"
       placeholder="Title"

@@ -24,9 +24,8 @@ export class InputComponent<T> implements ControlValueAccessor {
   @Input() id = '';
   @Input() name = '';
   @Input() placeholder = '';
-  @Input() type: 'text' | 'number' | 'date' | 'password' | 'file' = 'text';
+  @Input() type: 'text' | 'number' | 'date' | 'password' = 'text';
   @Input() disabled = false;
-  @Input() accept = '';
 
   value: T | null = null;
   onChange: (value: T | null) => void = () => {};
@@ -50,14 +49,7 @@ export class InputComponent<T> implements ControlValueAccessor {
 
   handleInput(event: Event): void {
     const input = event.target as HTMLInputElement;
-
-    if (this.type === 'file' && input.files) {
-      const file = input.files[0];
-      this.value = file as T;
-    } else {
-      this.value = input.value as T;
-    }
-
+    this.value = input.value as T;
     this.onChange(this.value);
     this.onTouched();
   }

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -7,12 +7,12 @@ import {
 } from '@angular/forms';
 import {
   ButtonComponent,
+  ImagePickerComponent,
   InputComponent,
   TextAreaComponent,
 } from '@app/shared/components';
 import { type Option } from '@app/shared/interfaces';
 import { WithoutMenuComponent } from '@app/shared/layouts';
-import { Subscription } from 'rxjs';
 import { DropdownComponent } from '../../../../../shared/components/dropdown/dropdown.component';
 import { GenresService, LanguagesService, MoviesService } from '../../services';
 
@@ -25,18 +25,16 @@ import { GenresService, LanguagesService, MoviesService } from '../../services';
     WithoutMenuComponent,
     ReactiveFormsModule,
     DropdownComponent,
+    ImagePickerComponent,
   ],
   templateUrl: './movie-form.component.html',
   styleUrl: './movie-form.component.scss',
 })
-export class MovieFormComponent implements OnInit, OnDestroy {
+export class MovieFormComponent implements OnInit {
   genres: Option[] = [];
   languages: Option[] = [];
 
   formNewMovie: FormGroup;
-  subscriptions: Subscription = new Subscription();
-
-  imagePreview: string | ArrayBuffer | null = 'https://placehold.co/400x600';
 
   constructor(
     private readonly genresService: GenresService,
@@ -58,11 +56,6 @@ export class MovieFormComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.getCategories();
     this.getLanguages();
-    this.subscribeToCoverChanges();
-  }
-
-  ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
   }
 
   getCategories(): void {
@@ -84,33 +77,11 @@ export class MovieFormComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
+    if (this.formNewMovie.invalid) {
+      return;
+    }
     this.moviesService.createMovie(this.formNewMovie.value).subscribe(() => {
       this.formNewMovie.reset();
     });
-    this.formNewMovie.reset();
-  }
-
-  subscribeToCoverChanges(): void {
-    const coverSubscription = this.formNewMovie
-      .get('cover')
-      ?.valueChanges.subscribe((file: File) => {
-        if (!file) {
-          this.imagePreview = 'https://placehold.co/400x600';
-          return;
-        }
-
-        if (!file.type.includes('image')) {
-          this.formNewMovie.get('cover')?.setErrors({ invalidFileType: true });
-          return;
-        }
-
-        const reader = new FileReader();
-        reader.onload = () => {
-          this.imagePreview = reader.result;
-        };
-        reader.readAsDataURL(file);
-      });
-
-    this.subscriptions.add(coverSubscription);
   }
 }

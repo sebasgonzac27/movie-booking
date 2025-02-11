@@ -1,0 +1,45 @@
+@use "variables";
+@use "sass:color";
+
+.image-picker-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.image-picker {
+  &__input {
+    background-color: variables.$tertiary-color;
+    color: variables.$text-primary;
+    border: none;
+    border-radius: 1rem;
+    padding: 1rem;
+    width: 100%;
+
+    &[type="file"]::file-selector-button {
+      background-color: variables.$primary-color;
+      font-weight: variables.$semi-bold;
+      color: variables.$background-color;
+      padding: 0.5rem 1rem;
+      margin-right: 10px;
+      border-radius: 12px;
+      border: none;
+
+      &:hover {
+        background-color: color.adjust(
+          variables.$primary-color,
+          $lightness: -10%
+        );
+      }
+    }
+  }
+
+  &__preview {
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 1rem;
+    margin: 0 auto;
+  }
+}

@@ -1,0 +1,14 @@
+<div class="image-picker-container">
+  <app-typography type="label">{{ label }}</app-typography>
+  <div class="image-picker">
+    <input
+      class="image-picker__input"
+      type="file"
+      accept="image/*"
+      [value]="value"
+      (change)="onFileChange($event)"
+      #fileInput
+    />
+  </div>
+  <img class="image-picker__preview" [src]="preview" alt="Cover of movie" />
+</div>
