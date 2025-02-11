@@ -1,10 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  forwardRef,
-  Input,
-  ViewChild,
-} from '@angular/core';
+import { Component, forwardRef, Input } from '@angular/core';
 import {
   ControlValueAccessor,
   NG_VALUE_ACCESSOR,
@@ -33,9 +27,6 @@ export class InputComponent<T> implements ControlValueAccessor {
   @Input() type: 'text' | 'number' | 'date' | 'password' | 'file' = 'text';
   @Input() disabled = false;
   @Input() accept = '';
-
-  @ViewChild('inputRef', { static: false })
-  inputRef!: ElementRef<HTMLInputElement>;
 
   value: T | null = null;
   onChange: (value: T | null) => void = () => {};

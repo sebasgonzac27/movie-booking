@@ -84,6 +84,7 @@ export class MovieFormComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
+    console.log(this.formNewMovie.value);
     this.formNewMovie.reset();
     // this.moviesService.createMovie(this.formNewMovie.value).subscribe(() => {
     //   this.formNewMovie.reset();

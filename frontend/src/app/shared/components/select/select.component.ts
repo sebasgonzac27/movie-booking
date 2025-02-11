@@ -52,13 +52,7 @@ export class SelectComponent<T> implements ControlValueAccessor {
 
   handleInput(event: Event): void {
     const input = event.target as HTMLSelectElement;
-    if (this.multiple) {
-      this.value = Array.from(input.selectedOptions).map(
-        (option) => option.value,
-      ) as T;
-    } else {
-      this.value = input.value as T;
-    }
+    this.value = input.value as T;
     this.onChange(this.value);
     this.onTouched();
   }

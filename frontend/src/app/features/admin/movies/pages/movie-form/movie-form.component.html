@@ -13,6 +13,7 @@
       label="Title"
       placeholder="Title"
       name="title"
+      k
       type="text"
       formControlName="title"
     ></app-input>
@@ -42,7 +43,6 @@
       label="Genres"
       id="genres"
       name="genres"
-      [multiple]="true"
       [options]="genres"
       formControlName="genres"
     ></app-select>
@@ -50,7 +50,6 @@
       label="Languages"
       id="languages"
       name="languages"
-      [multiple]="true"
       [options]="languages"
       formControlName="languages"
     ></app-select>

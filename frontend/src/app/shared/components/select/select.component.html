@@ -5,6 +5,7 @@
     [id]="id"
     [name]="name"
     [multiple]="multiple"
+    [value]="value ? value : options[0].value"
     (change)="handleInput($event)"
   >
     <option
