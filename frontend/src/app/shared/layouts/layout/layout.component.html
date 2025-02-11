@@ -1,15 +1,23 @@
 <div class="without-menu">
   <header class="header">
-    <lucide-icon
-      [img]="ArrowLeft"
-      size="24"
-      class="button"
-      (click)="goBack()"
-    ></lucide-icon>
-    <app-typography class="title" type="title">{{ name }}</app-typography>
-    <div class="empty"></div>
+    <ng-container *ngIf="variant === 'primary'; else secondary">
+      <img src="images/logo.svg" alt="Logo MBooking" />
+    </ng-container>
+    <ng-template #secondary>
+      <lucide-icon
+        [img]="ArrowLeft"
+        size="24"
+        class="button"
+        (click)="goBack()"
+      ></lucide-icon>
+      <app-typography class="title" type="title">{{ name }}</app-typography>
+      <div class="empty"></div>
+    </ng-template>
   </header>
   <main class="main">
     <ng-content select="[main]"></ng-content>
   </main>
+  <footer class="footer" *ngIf="showNavigation">
+    <app-navigation></app-navigation>
+  </footer>
 </div>

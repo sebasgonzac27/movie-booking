@@ -1,12 +1,18 @@
-import { Location } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { NavigationComponent } from '@app/shared/components';
 import { ArrowLeft, LucideAngularModule } from 'lucide-angular';
 import { TypographyComponent } from '../../design-system/typography/typography.component';
 
 @Component({
   selector: 'app-layout',
-  imports: [TypographyComponent, LucideAngularModule],
+  imports: [
+    CommonModule,
+    TypographyComponent,
+    LucideAngularModule,
+    NavigationComponent,
+  ],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss',
 })
@@ -15,6 +21,7 @@ export class LayoutComponent {
 
   @Input() name = '';
   @Input() showNavigation = false;
+  @Input() variant: 'primary' | 'secondary' = 'primary';
 
   constructor(
     private readonly location: Location,
