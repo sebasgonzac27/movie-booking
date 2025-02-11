@@ -21,3 +21,9 @@ export const Dates: Story = {
     type: 'date',
   },
 };
+
+export const Search: Story = {
+  args: {
+    type: 'search',
+  },
+};
