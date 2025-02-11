@@ -12,7 +12,7 @@ import {
   InputComponent,
   TypographyComponent,
 } from '@app/shared/design-system';
-import { MinusComponent } from '@app/shared/icons';
+import { LucideAngularModule, Minus } from 'lucide-angular';
 
 @Component({
   selector: 'app-function-form',
@@ -21,13 +21,15 @@ import { MinusComponent } from '@app/shared/icons';
     ReactiveFormsModule,
     InputComponent,
     ButtonComponent,
-    MinusComponent,
     TypographyComponent,
+    LucideAngularModule,
   ],
   templateUrl: './function-form.component.html',
   styleUrl: './function-form.component.scss',
 })
 export class FunctionFormComponent {
+  readonly Minus = Minus;
+
   @Input() formGroup!: FormGroup;
 
   constructor(private readonly formBuilder: FormBuilder) {}

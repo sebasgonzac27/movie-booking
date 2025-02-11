@@ -11,6 +11,11 @@
       [value]="value"
       (input)="handleInput($event)"
     />
-    <app-search class="input-icon" *ngIf="type === 'search'"></app-search>
+    <lucide-icon
+      [img]="Search"
+      size="20"
+      class="input-icon"
+      *ngIf="type === 'search'"
+    ></lucide-icon>
   </div>
 </div>

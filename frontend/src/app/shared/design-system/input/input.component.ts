@@ -5,7 +5,7 @@ import {
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { SearchComponent } from '@app/shared/icons';
+import { LucideAngularModule, Search } from 'lucide-angular';
 import { TypographyComponent } from '../typography/typography.component';
 
 @Component({
@@ -14,7 +14,7 @@ import { TypographyComponent } from '../typography/typography.component';
     CommonModule,
     TypographyComponent,
     ReactiveFormsModule,
-    SearchComponent,
+    LucideAngularModule,
   ],
   providers: [
     {
@@ -27,6 +27,8 @@ import { TypographyComponent } from '../typography/typography.component';
   styleUrls: ['./input.component.scss'],
 })
 export class InputComponent<T> implements ControlValueAccessor {
+  readonly Search = Search;
+
   @Input() label = '';
   @Input() id = '';
   @Input() name = '';

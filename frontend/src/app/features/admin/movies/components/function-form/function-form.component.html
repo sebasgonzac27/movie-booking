@@ -7,10 +7,12 @@
     >
       <header class="function__header">
         <app-typography type="title"> Function {{ i + 1 }} </app-typography>
-        <app-minus
+        <lucide-icon
+          [img]="Minus"
+          size="20"
           class="function__icon-remove"
           (click)="removeFunction(i)"
-        ></app-minus>
+        ></lucide-icon>
       </header>
 
       <app-input
