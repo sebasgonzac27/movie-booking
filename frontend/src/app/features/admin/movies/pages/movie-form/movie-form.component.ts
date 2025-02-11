@@ -8,12 +8,12 @@ import {
 import {
   ButtonComponent,
   InputComponent,
-  SelectComponent,
   TextAreaComponent,
 } from '@app/shared/components';
 import { type Option } from '@app/shared/interfaces';
 import { WithoutMenuComponent } from '@app/shared/layouts';
 import { Subscription } from 'rxjs';
+import { DropdownComponent } from '../../../../../shared/components/dropdown/dropdown.component';
 import { GenresService, LanguagesService, MoviesService } from '../../services';
 
 @Component({
@@ -21,10 +21,10 @@ import { GenresService, LanguagesService, MoviesService } from '../../services';
   imports: [
     InputComponent,
     ButtonComponent,
-    SelectComponent,
     TextAreaComponent,
     WithoutMenuComponent,
     ReactiveFormsModule,
+    DropdownComponent,
   ],
   templateUrl: './movie-form.component.html',
   styleUrl: './movie-form.component.scss',
@@ -68,7 +68,7 @@ export class MovieFormComponent implements OnInit, OnDestroy {
   getCategories(): void {
     this.genresService.getGenres().subscribe((genres) => {
       this.genres = genres.map((genre) => ({
-        value: genre.id,
+        value: genre.id.toString(),
         label: genre.name,
       }));
     });
@@ -77,18 +77,17 @@ export class MovieFormComponent implements OnInit, OnDestroy {
   getLanguages(): void {
     this.languagesService.getLanguages().subscribe((languages) => {
       this.languages = languages.map((language) => ({
-        value: language.id,
+        value: language.id.toString(),
         label: language.name,
       }));
     });
   }
 
   onSubmit(): void {
-    console.log(this.formNewMovie.value);
+    this.moviesService.createMovie(this.formNewMovie.value).subscribe(() => {
+      this.formNewMovie.reset();
+    });
     this.formNewMovie.reset();
-    // this.moviesService.createMovie(this.formNewMovie.value).subscribe(() => {
-    //   this.formNewMovie.reset();
-    // });
   }
 
   subscribeToCoverChanges(): void {

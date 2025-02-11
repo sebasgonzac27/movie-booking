@@ -19,6 +19,6 @@ type Story = StoryObj<ChipComponent>;
 export const Default: Story = {
   render: (args) => ({
     props: args,
-    template: `<app-chip>Hola</app-chip>`,
+    template: `<app-chip>Default</app-chip>`,
   }),
 };

@@ -6,6 +6,7 @@
   gap: 0.5rem;
   padding: 0.25rem 0.5rem;
   background-color: variables.$tertiary-color;
+  border-radius: 2px;
 
   &__text {
     font-size: 0.875rem;
@@ -15,6 +16,12 @@
   &__remove {
     cursor: pointer;
     color: variables.$text-secondary;
-    font-size: 0.5rem;
+    width: 15px;
+    height: 15px;
+    vertical-align: middle;
+
+    &:hover {
+      color: variables.$text-primary;
+    }
   }
 }

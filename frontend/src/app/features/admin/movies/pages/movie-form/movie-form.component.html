@@ -13,7 +13,6 @@
       label="Title"
       placeholder="Title"
       name="title"
-      k
       type="text"
       formControlName="title"
     ></app-input>
@@ -39,20 +38,20 @@
       type="number"
       formControlName="duration"
     ></app-input>
-    <app-select
+    <app-dropdown
       label="Genres"
-      id="genres"
-      name="genres"
+      placeholder="Select genres"
       [options]="genres"
+      [multiple]="true"
       formControlName="genres"
-    ></app-select>
-    <app-select
+    ></app-dropdown>
+    <app-dropdown
       label="Languages"
-      id="languages"
-      name="languages"
+      placeholder="Select languages"
       [options]="languages"
+      [multiple]="true"
       formControlName="languages"
-    ></app-select>
+    ></app-dropdown>
   </form>
   <app-button class="button" (click)="onSubmit()" footer>Confirm</app-button>
 </app-without-menu>
