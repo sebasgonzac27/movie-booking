@@ -7,8 +7,8 @@ import {
 } from '@angular/forms';
 import { ButtonComponent } from '@app/shared/design-system';
 import { LayoutComponent } from '@app/shared/layouts';
+import { MoviesService } from '@app/shared/services';
 import { FunctionFormComponent, MovieFormComponent } from '../../components';
-import { MoviesService } from '../../services';
 
 @Component({
   selector: 'app-movie-new',

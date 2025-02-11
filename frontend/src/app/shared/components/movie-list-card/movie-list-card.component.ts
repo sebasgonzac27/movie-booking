@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { MovieResponse } from '@app/features/admin/movies/interfaces';
+import { MovieResponse } from '@app/shared/interfaces';
 import { formatDate } from '@app/shared/utils';
 import {
   CalendarDays,
