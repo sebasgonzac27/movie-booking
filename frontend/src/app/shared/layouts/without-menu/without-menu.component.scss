@@ -3,9 +3,6 @@
 .without-menu {
   display: flex;
   flex-direction: column;
-  height: 100dvh;
-  width: 100dvw;
-  overflow-x: hidden;
 }
 
 .header {
@@ -13,13 +10,6 @@
   align-items: center;
   justify-content: space-between;
   padding: 20px;
-  background-color: variables.$background-color;
-  border-bottom: 1px solid variables.$secondary-color;
-}
-
-.main {
-  flex-grow: 1;
-  overflow-y: auto;
 }
 
 .button {
