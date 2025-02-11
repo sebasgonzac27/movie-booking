@@ -1,0 +1,46 @@
+<form class="movie-form" [formGroup]="formGroup">
+  <app-image-picker label="Cover" formControlName="cover"></app-image-picker>
+  <app-input
+    label="Title"
+    placeholder="Title"
+    name="title"
+    type="text"
+    formControlName="title"
+  ></app-input>
+  <app-text-area
+    label="Storyline"
+    placeholder="Storyline"
+    name="storyline"
+    type="text"
+    [maxLength]="600"
+    formControlName="storyline"
+  ></app-text-area>
+  <app-input
+    label="Release Date"
+    placeholder="Release Date"
+    name="releaseDate"
+    type="date"
+    formControlName="releaseDate"
+  ></app-input>
+  <app-input
+    label="Duration (minutes)"
+    placeholder="Duration"
+    name="duration"
+    type="number"
+    formControlName="duration"
+  ></app-input>
+  <app-dropdown
+    label="Genres"
+    placeholder="Select genres"
+    [options]="genres"
+    [multiple]="true"
+    formControlName="genres"
+  ></app-dropdown>
+  <app-dropdown
+    label="Languages"
+    placeholder="Select languages"
+    [options]="languages"
+    [multiple]="true"
+    formControlName="languages"
+  ></app-dropdown>
+</form>
