@@ -1,0 +1,48 @@
+@use "variables";
+@use "sass:color";
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.input-icon {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: variables.$secondary-color;
+  width: 20px;
+  height: 20px;
+}
+
+.input {
+  background-color: variables.$tertiary-color;
+  color: variables.$text-primary;
+  border: none;
+  border-radius: 1rem;
+  padding: 1rem;
+  width: 100%;
+
+  &::placeholder {
+    color: variables.$text-secondary;
+  }
+
+  &:focus {
+    outline: 2px solid variables.$primary-color;
+  }
+
+  &[type="date"]::-webkit-calendar-picker-indicator,
+  &[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+  }
+
+  &[type="search"] {
+    padding-left: 2.5rem;
+  }
+}

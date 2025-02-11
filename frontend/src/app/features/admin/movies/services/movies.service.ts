@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@envs/environment.development';
-import { NewMovie } from '../interfaces';
+import { MovieResponse, NewMovie } from '../interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -23,5 +23,9 @@ export class MoviesService {
     formData.append('functions', JSON.stringify(movie.functions));
 
     return this.httpClient.post(`${environment.apiUrl}/movies`, formData);
+  }
+
+  getMovies() {
+    return this.httpClient.get<MovieResponse[]>(`${environment.apiUrl}/movies`);
   }
 }

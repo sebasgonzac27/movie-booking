@@ -5,8 +5,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { ButtonComponent } from '@app/shared/components';
-import { WithoutMenuComponent } from '@app/shared/layouts';
+import { ButtonComponent } from '@app/shared/design-system';
+import { LayoutComponent } from '@app/shared/layouts';
 import { FunctionFormComponent, MovieFormComponent } from '../../components';
 import { MoviesService } from '../../services';
 
@@ -15,7 +15,7 @@ import { MoviesService } from '../../services';
   imports: [
     ReactiveFormsModule,
     ButtonComponent,
-    WithoutMenuComponent,
+    LayoutComponent,
     MovieFormComponent,
     FunctionFormComponent,
   ],

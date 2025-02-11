@@ -1,1 +1,1 @@
-export { WithoutMenuComponent } from './without-menu/without-menu.component';
+export { LayoutComponent } from './layout/layout.component';

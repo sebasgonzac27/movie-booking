@@ -1,0 +1,35 @@
+<div class="dropdown__container">
+  <app-typography type="label">{{ label }}</app-typography>
+  <div class="dropdown">
+    <div
+      [ngClass]="{
+        dropdown__selected: true,
+        'dropdown__selected--open': isOpen,
+        'dropdown__selected--selected':
+          selectedOption || selectedOptions.length,
+      }"
+      (click)="toggle()"
+    >
+      {{ displaySelectedValue() }}
+      <lucide-icon
+        [img]="isOpen ? ChevronUp : ChevronDown"
+        size="20"
+        class="dropdown__icon"
+      ></lucide-icon>
+    </div>
+    <ul class="dropdown__options" *ngIf="isOpen">
+      <li
+        [ngClass]="{
+          dropdown__option: true,
+          'dropdown__option--selected': multiple
+            ? selectedOptions.includes(option)
+            : option === selectedOption,
+        }"
+        *ngFor="let option of options"
+        (click)="selectOption(option)"
+      >
+        {{ option.label }}
+      </li>
+    </ul>
+  </div>
+</div>

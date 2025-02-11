@@ -1,1 +1,16 @@
-<p>movie-list works!</p>
+<app-layout name="Movies">
+  <main main>
+    <app-input
+      placeholder="Search for a movie"
+      type="search"
+      [formControl]="searchControl"
+    ></app-input>
+
+    <section class="movie-list">
+      <app-movie-list-card
+        *ngFor="let movie of movies"
+        [movie]="movie"
+      ></app-movie-list-card>
+    </section>
+  </main>
+</app-layout>

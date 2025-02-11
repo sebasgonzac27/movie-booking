@@ -1,0 +1,15 @@
+<div class="without-menu">
+  <header class="header">
+    <lucide-icon
+      [img]="ArrowLeft"
+      size="24"
+      class="button"
+      (click)="goBack()"
+    ></lucide-icon>
+    <app-typography class="title" type="title">{{ name }}</app-typography>
+    <div class="empty"></div>
+  </header>
+  <main class="main">
+    <ng-content select="[main]"></ng-content>
+  </main>
+</div>

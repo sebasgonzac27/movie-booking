@@ -29,8 +29,12 @@ export class MoviesController {
   }
 
   @Get()
-  findAll(@Query('genre') genre: string, @Query('language') language: string) {
-    return this.moviesService.findAll({ genre, language });
+  findAll(
+    @Query('search') search: string,
+    @Query('genre') genre: string,
+    @Query('language') language: string,
+  ) {
+    return this.moviesService.findAll({ genre, language, search });
   }
 
   @Get(':slug')

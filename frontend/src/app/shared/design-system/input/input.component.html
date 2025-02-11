@@ -1,0 +1,16 @@
+<div class="input-container">
+  <app-typography *ngIf="label" type="label">{{ label }}</app-typography>
+  <div class="input-wrapper">
+    <input
+      class="input"
+      [id]="id"
+      [name]="name"
+      [placeholder]="placeholder"
+      [type]="type"
+      [disabled]="disabled"
+      [value]="value"
+      (input)="handleInput($event)"
+    />
+    <app-search class="input-icon" *ngIf="type === 'search'"></app-search>
+  </div>
+</div>

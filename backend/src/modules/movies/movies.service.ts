@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import slugify from 'slugify';
-import { Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 import { FirebaseService } from '../firebase/firebase.service';
 import { Function } from '../functions/entities/function.entity';
 import { GenresService } from '../genres/genres.service';
@@ -80,10 +80,19 @@ export class MoviesService {
     }
   }
 
-  async findAll({ genre, language }: { genre: string; language: string }) {
+  async findAll({
+    genre,
+    language,
+    search,
+  }: {
+    genre: string;
+    language: string;
+    search: string;
+  }) {
     return await this.movieRepository.find({
       relations: ['genres', 'languages'],
       where: {
+        title: search ? ILike(`%${search}%`) : undefined,
         genres: genre ? { name: genre } : undefined,
         languages: language ? { name: language } : undefined,
       },

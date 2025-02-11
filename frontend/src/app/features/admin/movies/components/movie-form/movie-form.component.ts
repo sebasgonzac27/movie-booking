@@ -5,7 +5,7 @@ import {
   ImagePickerComponent,
   InputComponent,
   TextAreaComponent,
-} from '@app/shared/components';
+} from '@app/shared/design-system';
 import { Option } from '@app/shared/interfaces';
 import { GenresService, LanguagesService } from '../../services';
 

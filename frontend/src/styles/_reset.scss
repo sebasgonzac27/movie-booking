@@ -66,6 +66,10 @@ pre {
   font-family: monospace; /* 1 */
 }
 
+p {
+  margin: 0;
+}
+
 /* Text-level semantics
      ========================================================================== */
 
@@ -291,6 +295,7 @@ textarea {
   appearance: textfield; /* 1 */
   -webkit-appearance: textfield; /* 1 */
   outline-offset: -2px; /* 2 */
+  width: 100%;
 }
 
 /**

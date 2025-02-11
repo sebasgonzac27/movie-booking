@@ -11,7 +11,7 @@ import {
   ButtonComponent,
   InputComponent,
   TypographyComponent,
-} from '@app/shared/components';
+} from '@app/shared/design-system';
 import { MinusComponent } from '@app/shared/icons';
 
 @Component({

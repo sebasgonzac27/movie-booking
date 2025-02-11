@@ -1,0 +1,30 @@
+@use "variables";
+
+.without-menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.main {
+  padding: 0px 20px 20px 20px;
+}
+
+.button {
+  color: variables.$secondary-color;
+  cursor: pointer;
+
+  &:hover {
+    color: variables.$primary-color;
+  }
+}
+
+.empty {
+  width: 24px;
+}
