@@ -1,10 +1,16 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { MovieListCardComponent } from './movie-list-card.component';
 
 const meta: Meta<MovieListCardComponent> = {
-  title: 'Components/MovieListCardComponent',
+  title: 'Components/Movie List Card',
   component: MovieListCardComponent,
   tags: ['autodocs'],
+  decorators: [
+    moduleMetadata({
+      imports: [RouterTestingModule],
+    }),
+  ],
 };
 
 export default meta;

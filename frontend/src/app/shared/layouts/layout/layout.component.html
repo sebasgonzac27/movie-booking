@@ -14,7 +14,12 @@
       <div class="empty"></div>
     </ng-template>
   </header>
-  <main class="main">
+  <main
+    [ngClass]="{
+      main: true,
+      'main--with-navigation': showNavigation,
+    }"
+  >
     <ng-content select="[main]"></ng-content>
   </main>
   <footer class="footer" *ngIf="showNavigation">

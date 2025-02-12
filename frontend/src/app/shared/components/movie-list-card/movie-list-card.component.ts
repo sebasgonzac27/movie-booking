@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { MovieResponse } from '@app/shared/interfaces';
-import { formatDate } from '@app/shared/utils';
+import { formatHour } from '@app/shared/utils';
 import {
-  CalendarDays,
   Clapperboard,
+  Clock,
   Languages,
   LucideAngularModule,
 } from 'lucide-angular';
@@ -11,14 +12,14 @@ import { TypographyComponent } from '../../design-system/typography/typography.c
 
 @Component({
   selector: 'app-movie-list-card',
-  imports: [TypographyComponent, LucideAngularModule],
+  imports: [TypographyComponent, LucideAngularModule, RouterModule],
   templateUrl: './movie-list-card.component.html',
   styleUrl: './movie-list-card.component.scss',
 })
 export class MovieListCardComponent {
   readonly Clapperboard = Clapperboard;
   readonly Languages = Languages;
-  readonly CalendarDays = CalendarDays;
+  readonly Clock = Clock;
 
   @Input() movie!: MovieResponse;
 
@@ -30,7 +31,7 @@ export class MovieListCardComponent {
     return this.movie.languages.map((language) => language.name).join(', ');
   }
 
-  get releaseDate() {
-    return formatDate(this.movie.releaseDate);
+  get duration() {
+    return formatHour(this.movie.duration);
   }
 }

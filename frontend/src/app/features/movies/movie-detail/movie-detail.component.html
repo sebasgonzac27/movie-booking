@@ -1,1 +1,31 @@
-<p>movie-detail works!</p>
+<app-layout variant="secondary">
+  <section class="movie-detail" main>
+    <header class="movie-detail__header">
+      <img [src]="movie.cover" alt="Movie cover" class="movie-detail__cover" />
+      <div class="movie-detail__basic-info">
+        <h1 class="movie-detail__title">{{ movie.title }}</h1>
+        <span>{{ duration }} &middot; {{ releaseDate }}</span>
+      </div>
+    </header>
+    <main class="movie-detail__complete-info">
+      <table class="movie-detail__table">
+        <th></th>
+        <tr>
+          <td class="movie-detail__item">Movie genres:</td>
+          <td class="movie-detail__item-value">{{ genres }}</td>
+        </tr>
+        <tr>
+          <td class="movie-detail__item">Language:</td>
+          <td class="movie-detail__item-value">{{ languages }}</td>
+        </tr>
+      </table>
+      <article>
+        <h2 class="movie-detail__title">Storyline</h2>
+        <p class="movie-detail__storyline">{{ movie.storyline }}</p>
+      </article>
+    </main>
+    <footer class="movie-detail__footer">
+      <app-button>Buy tickets</app-button>
+    </footer>
+  </section>
+</app-layout>

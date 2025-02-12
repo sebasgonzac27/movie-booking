@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@envs/environment.development';
 import { MovieResponse, NewMovie } from '../interfaces';
@@ -25,7 +25,21 @@ export class MoviesService {
     return this.httpClient.post(`${environment.apiUrl}/movies`, formData);
   }
 
-  getMovies() {
-    return this.httpClient.get<MovieResponse[]>(`${environment.apiUrl}/movies`);
+  getMovies(params?: { search?: string }) {
+    let httpParams = new HttpParams();
+    if (params?.search) {
+      httpParams = httpParams.set('search', params.search);
+    }
+
+    return this.httpClient.get<MovieResponse[]>(
+      `${environment.apiUrl}/movies`,
+      { params: httpParams },
+    );
+  }
+
+  getMovieBySlug(slug: string) {
+    return this.httpClient.get<MovieResponse>(
+      `${environment.apiUrl}/movies/${slug}`,
+    );
   }
 }

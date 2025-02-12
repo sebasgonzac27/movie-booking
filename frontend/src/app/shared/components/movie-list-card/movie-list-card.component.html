@@ -1,9 +1,12 @@
 <article class="movie-list-card">
   <img [src]="movie.cover" alt="Movie cover" class="movie-list-card__cover" />
   <div class="movie-list-card__info">
-    <app-typography class="movie-list-card__title" [bold]="true">{{
-      movie.title
-    }}</app-typography>
+    <app-typography
+      class="movie-list-card__title"
+      [bold]="true"
+      [routerLink]="'/movies/' + movie.slug"
+      >{{ movie.title }}</app-typography
+    >
     <div class="movie-list-card__details">
       <lucide-icon [img]="Clapperboard" size="18"></lucide-icon>
       <p>{{ genres }}</p>
@@ -13,8 +16,8 @@
       <p>{{ languages }}</p>
     </div>
     <div class="movie-list-card__details">
-      <lucide-icon [img]="CalendarDays" size="18"></lucide-icon>
-      <p>{{ releaseDate }}</p>
+      <lucide-icon [img]="Clock" size="18"></lucide-icon>
+      <p>{{ duration }}</p>
     </div>
   </div>
 </article>

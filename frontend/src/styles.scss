@@ -7,11 +7,11 @@
 * {
   box-sizing: border-box;
   min-width: 0;
+  font-family: "Inter Variable", sans-serif;
 }
 
 body {
   min-height: 100dvh;
-  font-family: "Inter Variable", sans-serif;
   background-color: variables.$background-color;
   color: variables.$secondary-color;
 }

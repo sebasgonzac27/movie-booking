@@ -26,6 +26,11 @@
   &__title {
     color: variables.$primary-color;
     margin-bottom: 0.5rem;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   &__details {
