@@ -1,6 +1,7 @@
-import { HttpInterceptorFn } from '@angular/common/http';
+import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { catchError, throwError } from 'rxjs';
 import { TokenService } from '../services';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
@@ -11,7 +12,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   if (token) {
     if (tokenService.isTokenExpired(token)) {
       tokenService.removeToken();
-      router.navigate(['/login']);
+      router.navigate(['/auth/sign-in']);
       return next(req);
     }
 
@@ -23,5 +24,13 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     return next(authReq);
   }
 
-  return next(req);
+  return next(req).pipe(
+    catchError((error: HttpErrorResponse) => {
+      if (error.status === 401) {
+        tokenService.removeToken();
+        router.navigate(['/auth/sign-in']);
+      }
+      return throwError(() => error);
+    }),
+  );
 };
