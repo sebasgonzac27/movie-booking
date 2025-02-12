@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ButtonComponent } from '@app/shared/design-system';
 import { MovieResponse } from '@app/shared/interfaces';
 import { LayoutComponent } from '@app/shared/layouts';
@@ -17,6 +17,7 @@ export class MovieDetailComponent implements OnInit {
   constructor(
     private readonly activatedRoute: ActivatedRoute,
     private readonly moviesService: MoviesService,
+    private readonly router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -32,6 +33,10 @@ export class MovieDetailComponent implements OnInit {
         });
       }
     });
+  }
+
+  onBuyTicket(): void {
+    this.router.navigate(['movies', this.movie.slug, 'functions']);
   }
 
   get genres() {

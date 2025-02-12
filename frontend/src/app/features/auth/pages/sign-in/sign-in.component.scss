@@ -1,0 +1,25 @@
+@use "variables";
+
+.sign-in {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  &__logo {
+    width: 300px;
+    margin-block: 2rem;
+  }
+
+  &__welcome {
+    font-weight: variables.$black;
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  &__message {
+    font-size: 1rem;
+    margin-bottom: 4rem;
+  }
+}

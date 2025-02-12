@@ -12,8 +12,7 @@
     background-color: variables.$primary-color;
     color: variables.$background-color;
 
-    &:hover,
-    &:focus {
+    &:hover {
       background-color: color.adjust(
         variables.$primary-color,
         $lightness: -10%

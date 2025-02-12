@@ -1,0 +1,22 @@
+@use "variables";
+
+.sign-in-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 350px;
+  &__sign-up {
+    text-align: center;
+  }
+
+  &__link {
+    color: variables.$primary-color;
+    text-decoration: none;
+    font-weight: variables.$bold;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

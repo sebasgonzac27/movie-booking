@@ -1,0 +1,22 @@
+<form class="sign-in-form" [formGroup]="formGroup">
+  <app-input
+    label="Email"
+    placeholder="Enter your email"
+    id="email"
+    name="email"
+    formControlName="email"
+  ></app-input>
+  <app-input
+    label="Password"
+    placeholder="Enter your password"
+    type="password"
+    id="password"
+    name="password"
+    formControlName="password"
+  ></app-input>
+  <app-button (click)="onSubmit()">Sign In</app-button>
+  <p class="sign-in-form__sign-up">
+    Don't have an account?
+    <a class="sign-in-form__link" [routerLink]="'/auth/sign-up'">Sing Up</a>
+  </p>
+</form>
