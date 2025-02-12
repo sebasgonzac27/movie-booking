@@ -7,3 +7,5 @@ export {
   type NewMovie,
 } from './movie.interface';
 export { type Option } from './option.interface';
+export { type PaymentMethod } from './payment-method.interface';
+export { type TicketDto, type TicketResponse } from './ticket.interface';

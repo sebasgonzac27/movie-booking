@@ -1,3 +1,32 @@
 <app-layout variant="secondary" name="Functions">
-  <p main>{{ functions | json }}</p>
+  <form [formGroup]="formGroup" main class="movie-functions">
+    <app-dropdown
+      label="Date"
+      [options]="datesOptions"
+      placeholder="Select a date"
+      id="date"
+      formControlName="date"
+    ></app-dropdown>
+    <app-dropdown
+      label="Hour"
+      [options]="hoursOptions"
+      placeholder="Select an hour"
+      id="hour"
+      formControlName="hour"
+    ></app-dropdown>
+    <app-input
+      label="Quantity"
+      type="number"
+      id="quantity"
+      formControlName="quantity"
+    ></app-input>
+    <app-dropdown
+      label="Payment Method"
+      [options]="paymentMethodsOptions"
+      placeholder="Select payment method"
+      id="paymentMethod"
+      formControlName="paymentMethod"
+    ></app-dropdown>
+    <app-button (click)="onSubmit()">Buy</app-button>
+  </form>
 </app-layout>
