@@ -42,6 +42,11 @@ export class MoviesController {
     return this.moviesService.findOne(slug);
   }
 
+  @Get(':slug/functions')
+  findFunctions(@Param('slug') slug: string) {
+    return this.moviesService.findFunctions(slug);
+  }
+
   @Patch(':id')
   update(@Param('id') id: number, @Body() updateMovieDto: UpdateMovieDto) {
     return this.moviesService.update(+id, updateMovieDto);

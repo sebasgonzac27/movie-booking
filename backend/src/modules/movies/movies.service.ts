@@ -111,6 +111,17 @@ export class MoviesService {
     return movie;
   }
 
+  async findFunctions(slug: string) {
+    const movie = await this.movieRepository.findOne({
+      where: { slug },
+      relations: ['functions'],
+    });
+    if (!movie) {
+      throw new NotFoundException(`Movie with slug ${slug} not found.`);
+    }
+    return movie.functions;
+  }
+
   async update(id: number, updateMovieDto: UpdateMovieDto) {
     const { genres, languages, ...updateData } = updateMovieDto;
 
