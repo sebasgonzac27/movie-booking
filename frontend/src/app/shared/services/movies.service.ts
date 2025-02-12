@@ -42,4 +42,10 @@ export class MoviesService {
       `${environment.apiUrl}/movies/${slug}`,
     );
   }
+
+  getFunctionsByMovieSlug(slug: string) {
+    return this.httpClient.get(
+      `${environment.apiUrl}/movies/${slug}/functions`,
+    );
+  }
 }
