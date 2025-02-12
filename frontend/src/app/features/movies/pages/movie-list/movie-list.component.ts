@@ -2,13 +2,13 @@ import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MovieListCardComponent } from '@app/shared/components';
 import { InputComponent } from '@app/shared/design-system';
 import { MovieResponse } from '@app/shared/interfaces';
 import { LayoutComponent } from '@app/shared/layouts';
 import { MoviesService } from '@app/shared/services';
 import { Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
-import { MovieListCardComponent } from '../../../shared/components/movie-list-card/movie-list-card.component';
 
 @Component({
   selector: 'app-movie-list',
