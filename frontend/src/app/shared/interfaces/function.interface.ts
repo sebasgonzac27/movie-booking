@@ -3,3 +3,8 @@ export interface Function {
   availableTickets: number;
   price: number;
 }
+
+export interface FunctionResponse extends Function {
+  id: number;
+  movieId: number;
+}

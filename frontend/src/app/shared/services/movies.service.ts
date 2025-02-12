@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@envs/environment.development';
-import { MovieResponse, NewMovie } from '../interfaces';
+import { FunctionResponse, MovieResponse, NewMovie } from '../interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -44,7 +44,7 @@ export class MoviesService {
   }
 
   getFunctionsByMovieSlug(slug: string) {
-    return this.httpClient.get(
+    return this.httpClient.get<FunctionResponse[]>(
       `${environment.apiUrl}/movies/${slug}/functions`,
     );
   }

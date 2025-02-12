@@ -1,4 +1,3 @@
-import { Function } from './function.interface';
 import { Genre } from './genre.interface';
 import { Language } from './language.interface';
 
